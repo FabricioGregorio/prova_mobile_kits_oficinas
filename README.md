@@ -1,6 +1,6 @@
 # Kits para Oficinas
 
-Projeto Integrador A1 – Programação para Dispositivos Móveis (IFS – Campus Lagarto).
+Programação para Dispositivos Móveis (IFS – Campus Lagarto).
 
 App em Flutter para montar kits de materiais para oficinas: o usuário entra, vê o catálogo, abre os detalhes de um material e monta o seu kit.
 
