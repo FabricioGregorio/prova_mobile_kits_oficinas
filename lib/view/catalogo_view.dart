@@ -115,7 +115,7 @@ class _CatalogoViewState extends State<CatalogoView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('Catálogo'),
-              TextoSecundario('Olá, $_nomeUsuario'),
+              TextoSecundario(_nomeUsuario),
             ],
           ),
           actions: [

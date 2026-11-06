@@ -38,13 +38,38 @@ class CatalogoViewModel extends ChangeNotifier {
     }).toList();
   }
 
+  bool _permitidoNoCatalogo(Material material) {
+    final categoria = material.categoria.trim().toLowerCase();
+    final nome = material.nome.trim().toLowerCase();
+
+    // Remove Jardinagem
+    if (categoria == 'jardinagem') {
+      return false;
+    }
+
+    // Remove Eletrônica / Eletrocina
+    if (categoria == 'eletrônica' ||
+        categoria == 'eletronica' ||
+        categoria == 'eletrocina') {
+      return false;
+    }
+
+    // Remove Geral (exceto mochila)
+    if (categoria == 'geral' && !nome.contains('mochila')) {
+      return false;
+    }
+
+    return true;
+  }
+
   Future<void> carregar() async {
     if (estado == EstadoTela.carregando) return;
     estado = EstadoTela.carregando;
     mensagemErro = null;
     notifyListeners();
     try {
-      materiais = await materialRepository.listar();
+      final lista = await materialRepository.listar();
+      materiais = lista.where(_permitidoNoCatalogo).toList();
       kit = await kitRepository.buscar(usuarioId);
       estado = EstadoTela.sucesso;
     } catch (erro) {
